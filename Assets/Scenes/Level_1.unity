@@ -168,7 +168,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &214107980
 PrefabInstance:
@@ -215,7 +215,7 @@ PrefabInstance:
     - target: {fileID: 7037209145178396917, guid: 4a73328b0e5f160458ce400defde9d34,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7037209145178396917, guid: 4a73328b0e5f160458ce400defde9d34,
         type: 3}
@@ -526,6 +526,7 @@ GameObject:
   - component: {fileID: 679773241}
   - component: {fileID: 679773240}
   - component: {fileID: 679773239}
+  - component: {fileID: 679773243}
   m_Layer: 5
   m_Name: 'Canvas '
   m_TagString: Untagged
@@ -614,6 +615,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &679773243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679773238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee974ca2cc7ff5844abb2e6dff20bfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,7 +1977,7 @@ Transform:
   - {fileID: 1336584672}
   - {fileID: 1451358109}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3307480974267503907
 PrefabInstance:
@@ -2081,6 +2095,11 @@ PrefabInstance:
       propertyPath: Walkpoints.Array.data[3]
       value: 
       objectReference: {fileID: 1451358109}
+    - target: {fileID: 6060677961285861603, guid: 29dfe0a105f34124d923692241bdf31a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6060677961285861604, guid: 29dfe0a105f34124d923692241bdf31a,
         type: 3}
       propertyPath: m_Name
@@ -2203,7 +2222,7 @@ PrefabInstance:
     - target: {fileID: 7669312693078348501, guid: a08bff887c3ac7548be68ed30f35ad0f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7669312693078348501, guid: a08bff887c3ac7548be68ed30f35ad0f,
         type: 3}
