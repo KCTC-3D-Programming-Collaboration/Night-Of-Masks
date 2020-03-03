@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (gameOver == true)
         {
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift)||Input.GetButtonDown("Submit"))
         {
             if (sneak == true)
             {
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)||Input.GetButtonDown("Fire3"))
         {
             if (pauseMenu.activeInHierarchy == false)
             {
