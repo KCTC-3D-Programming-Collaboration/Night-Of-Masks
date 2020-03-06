@@ -70,7 +70,7 @@ public class EnemyAI : MonoBehaviour
             nav.enabled = false;
             nexpointnum++;
 
-            if(nexpointnum > Walkpoints.Count)
+            if(nexpointnum >= Walkpoints.Count)
             {
                 nexpointnum = 0;
             }

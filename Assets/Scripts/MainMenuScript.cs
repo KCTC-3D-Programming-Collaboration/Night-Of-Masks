@@ -119,11 +119,35 @@ public class MainMenuScript : MonoBehaviour
     {
         int resetnum = 0;
         LevelSaveLoader.SaveLevelBeat(resetnum);
+        Vector3 reset = new Vector3(0, 1, 0);
+        PlayerPositionSaveLoader.SavePlayerPosition(reset);
         EventSystem es = EventSystem.current;
         ResetPanel.SetActive(false);
         MainPanel.SetActive(true);
         es.SetSelectedGameObject(null);
         es.SetSelectedGameObject(LevelSelect);
+    }
+
+    public void PlayButton()
+    {
+        levelsBeat = LevelSaveLoader.LoadLevelsBeat();
+        if (levelsBeat == 0)
+        {
+            SceneManager.LoadScene("Level_1");
+        }
+        else if(levelsBeat == 1)
+        {
+            SceneManager.LoadScene("Level_2");
+        }
+        else if (levelsBeat == 2)
+        {
+            SceneManager.LoadScene("Level_3");
+        }
+        else 
+        {
+            SceneManager.LoadScene("Level_3");
+        }
+
     }
 
 }

@@ -22,12 +22,26 @@ public class EndLevelScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))//only end level when player enters the end zone
         {
-            int levelsBeat = LevelSaveLoader.LoadLevelsBeat();
-            if(levelNum > levelsBeat)
+        //    PlayerPositionSaveLoader.SavePlayerPosition(new Vector3(0, 1, 0));
+        //    int levelsBeat = LevelSaveLoader.LoadLevelsBeat();
+        //    if(levelNum > levelsBeat)
+        //    {
+        //        LevelSaveLoader.SaveLevelBeat(levelNum);
+        //    }
+
+            if (levelNum == 1)
             {
-                LevelSaveLoader.SaveLevelBeat(levelNum);
+                SceneManager.LoadScene("Level_2");
             }
-            SceneManager.LoadScene("Main_Menu");
+            else if (levelNum == 2)
+            {
+                SceneManager.LoadScene("Level_3");
+            }
+            else if (levelNum == 3)
+            {
+                SceneManager.LoadScene("Main_Menu");
+            }
+            //SceneManager.LoadScene("Main_Menu");
         }
     }
 }

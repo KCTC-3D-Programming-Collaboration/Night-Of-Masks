@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     public GameObject gameOverPanel;
     public GameObject pauseMenu;
     public GameObject pauseButton;
+    public GameObject SavePanel;
+    public GameObject SaveButton;
+
     public BoxCollider boxCollider;
     public Transform spawnPoint;
     Animator animate;
@@ -30,6 +33,7 @@ public class PlayerController : MonoBehaviour
     Vector3 crouchHeight = new Vector3(1, 1, 1);
     RaycastHit hitRaycast;
 
+    private Vector3 StartPosition;
 
     void Start()
     {
@@ -37,11 +41,13 @@ public class PlayerController : MonoBehaviour
         currentSpeed = speed;
         rb = this.GetComponent<Rigidbody>();
         ySubtract = new Vector3(0, -0.4f, 0);
-
+        
     }
     private void Awake()
     {
         Time.timeScale = 1f;
+        StartPosition = PlayerPositionSaveLoader.LoadPlayerPosition();
+        gameObject.transform.position = StartPosition;
     }
 
     void Update()
@@ -81,21 +87,24 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift)||Input.GetButtonDown("Submit"))
         {
-            if (sneak == true)
+            if (!paused)
             {
-                sneak = false;
-                currentSpeed = speed;
-                currentSpeed = sneakSpeed;
-                boxCollider.transform.position = new Vector3(boxCollider.transform.position.x, boxCollider.transform.position.y + 0.5f, boxCollider.transform.position.z);
-                boxCollider.transform.localScale = normalHeight;
-            }
-            else
-            {
-                sneak = true;
-                currentSpeed = sneakSpeed;
-                boxCollider.transform.position = new Vector3(boxCollider.transform.position.x, boxCollider.transform.position.y - 0.5f, boxCollider.transform.position.z);
-                boxCollider.transform.localScale = crouchHeight;
+                if (sneak == true)
+                {
+                    sneak = false;
+                    currentSpeed = speed;
+                    currentSpeed = sneakSpeed;
+                    boxCollider.transform.position = new Vector3(boxCollider.transform.position.x, boxCollider.transform.position.y + 0.5f, boxCollider.transform.position.z);
+                    boxCollider.transform.localScale = normalHeight;
+                }
+                else
+                {
+                    sneak = true;
+                    currentSpeed = sneakSpeed;
+                    boxCollider.transform.position = new Vector3(boxCollider.transform.position.x, boxCollider.transform.position.y - 0.5f, boxCollider.transform.position.z);
+                    boxCollider.transform.localScale = crouchHeight;
 
+                }
             }
         }
 
@@ -137,10 +146,10 @@ public class PlayerController : MonoBehaviour
             rb.transform.position = position;
         }
 
-
-
         //transform.Translate(movement * currentSpeed * Time.deltaTime, Space.World);
     }
+
+
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
@@ -149,6 +158,7 @@ public class PlayerController : MonoBehaviour
         gameOver = true;
         sneak = false;
     }
+
     public void ButtonPress()
     {
         pauseMenu.SetActive(false);
@@ -157,6 +167,41 @@ public class PlayerController : MonoBehaviour
     }
 
     public void GoMainMenu()
+    {
+        SavePanel.SetActive(true);
+        pauseMenu.SetActive(false);
+        EventSystem es = EventSystem.current;
+        es.SetSelectedGameObject(null);
+        es.SetSelectedGameObject(SaveButton);
+    }
+
+    public void SaveBtnClick()
+    {
+        SaveWithoutQuit();
+        SceneManager.LoadScene("Main_Menu");
+    }
+
+    public void SaveWithoutQuit()
+    {
+        PlayerPositionSaveLoader.SavePlayerPosition(transform.position);
+        string levelname = SceneManager.GetActiveScene().name;
+        int levelsbeat = 0;
+        if (levelname == "Level_1")
+        {
+            levelsbeat = 0;
+        }
+        else if (levelname == "Level_2")
+        {
+            levelsbeat = 1;
+        }
+        else if (levelname == "Level_3")
+        {
+            levelsbeat = 2;
+        }
+        LevelSaveLoader.SaveLevelBeat(levelsbeat);
+    }
+
+    public void DontSaveBtnClick()
     {
         SceneManager.LoadScene("Main_Menu");
     }
