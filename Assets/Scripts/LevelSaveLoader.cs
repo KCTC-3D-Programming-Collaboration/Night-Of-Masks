@@ -13,7 +13,7 @@ public static class LevelSaveLoader
         BinaryFormatter bf = new BinaryFormatter();
         FileStream stream = new FileStream(Application.persistentDataPath + "/playerdata.data", FileMode.Create);
 
-        Debug.Log(level);
+        //Debug.Log(level);
 
         LevelBeatNum data = new LevelBeatNum(level);
 
